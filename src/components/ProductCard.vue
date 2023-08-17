@@ -3,7 +3,7 @@
   <img :src="data.image" alt="" />
   <p>R$ {{ data.price }}</p>
   <input type="number" :value="data.qty" />
-  <the-button @click="onButtonClick">Comprar</the-button>
+  <the-button variant="blue-button" @click="onButtonClick">Comprar</the-button>
 </template>
 
 <script>
