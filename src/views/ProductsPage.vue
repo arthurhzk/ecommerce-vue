@@ -25,7 +25,11 @@ export default {
   components: { ProductCard },
   methods: {
     onBuy(item) {
-      this.productsStore.purchasedItems.push(item);
+      const verify = this.productsStore.purchasedItems.push(item);
+
+      if (verify) {
+        alert("Item adicionado ao carrinho!");
+      }
     },
   },
 };

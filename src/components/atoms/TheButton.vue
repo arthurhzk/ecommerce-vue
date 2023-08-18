@@ -1,6 +1,6 @@
 <template>
   <button
-    class="blue-button"
+    class="blue"
     :class="{
       red: variant === 'red',
     }"
@@ -22,7 +22,7 @@ export default {
 };
 </script>
 <style>
-.blue-button {
+.blue {
   display: inline-block;
   background-color: #007bff;
   color: #fff;
