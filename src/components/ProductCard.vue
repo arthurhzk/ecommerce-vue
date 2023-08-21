@@ -2,8 +2,13 @@
   <h1>{{ data.title }}</h1>
   <img :src="data.image" alt="" />
   <p>R$ {{ data.price }}</p>
-  <input type="number" v-model="data.qty" />
-  <the-button variant="blue-button" @click="onButtonClick">Comprar</the-button>
+  <input type="number" v-model="quantityValue" />
+  <the-button
+    :disabled="!quantityValue"
+    variant="blue-button"
+    @click="onButtonClick"
+    >Comprar</the-button
+  >
 </template>
 
 <script>
@@ -15,13 +20,18 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      quantityValue: null,
+    };
+  },
   emits: ["buy"],
   components: {
     TheButton,
   },
   methods: {
     onButtonClick() {
-      this.$emit("buy");
+      this.$emit("buy", this.quantityValue);
     },
   },
 };

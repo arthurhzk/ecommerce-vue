@@ -11,7 +11,6 @@
 
 <script>
 export default {
-  emits: ["delete"],
   name: "TheButton",
   props: {
     variant: {
@@ -44,5 +43,9 @@ export default {
   transition: background-color 0.3s;
   cursor: pointer;
   border: none;
+}
+button:disabled {
+  background-color: gray;
+  cursor: default;
 }
 </style>

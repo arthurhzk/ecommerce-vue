@@ -5,11 +5,12 @@
       <img :src="item.image" alt="" />
       <p>{{ item.title }}</p>
       <p>{{ item.price }}</p>
-      <p>{{ item.qty }}</p>
+      <p>{{ item.quantity }}</p>
       <the-button variant="red" @click="deleteItem(index)">X</the-button>
     </div>
     <p v-if="total == 0">{{ cartEmptyMessage }}</p>
     <p v-else>R${{ total }}</p>
+    <p></p>
   </div>
 </template>
 
@@ -38,7 +39,7 @@ export default {
     },
     totalItems() {
       this.total = this.productsStore.purchasedItems.reduce(
-        (acc, item) => acc + item.price * item.qty,
+        (acc, item) => acc + item.price * item.quantity,
         0
       );
     },

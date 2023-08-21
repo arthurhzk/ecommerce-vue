@@ -1,9 +1,11 @@
 <template>
+  <input type="text" placeholder="pesquise aqui" v-model="inputValue" />
+  <p v-if="!searchItems.length">{{ emptySearch }}</p>
   <product-card
-    v-for="(item, index) in items"
+    v-for="item in searchItems"
     :key="item.id"
     :data="item"
-    @buy="onBuy(item)"
+    @buy="(quantity) => onBuy(item, quantity)"
   >
   </product-card>
 </template>
@@ -16,6 +18,8 @@ export default {
   data() {
     return {
       items: items,
+      inputValue: "",
+      emptySearch: "Não foi possível localizar o seu produto",
     };
   },
   setup() {
@@ -24,12 +28,16 @@ export default {
   },
   components: { ProductCard },
   methods: {
-    onBuy(item) {
-      const verify = this.productsStore.purchasedItems.push(item);
-
-      if (verify) {
-        alert("Item adicionado ao carrinho!");
-      }
+    onBuy(item, quantity) {
+      this.productsStore.addToCart(item, quantity);
+    },
+  },
+  computed: {
+    searchItems() {
+      if (!this.inputValue) return this.items;
+      return this.items.filter((item) => {
+        return item.title.toLowerCase().includes(this.inputValue.toLowerCase());
+      });
     },
   },
 };
