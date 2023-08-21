@@ -2,7 +2,7 @@
   <h1>{{ data.title }}</h1>
   <img :src="data.image" alt="" />
   <p>R$ {{ data.price }}</p>
-  <input type="number" v-model="quantityValue" />
+  <input type="number" v-model="quantityValue" min="1" />
   <the-button
     :disabled="!quantityValue"
     variant="blue-button"
