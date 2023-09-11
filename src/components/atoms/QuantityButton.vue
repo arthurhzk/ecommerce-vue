@@ -1,6 +1,6 @@
 <template>
-  <button @click="incrementItem">-</button>
-  <button @click="decrementItem">+</button>
+  <button @click="incrementItem">+</button>
+  <button @click="decrementItem">-</button>
 </template>
 
 <script>
