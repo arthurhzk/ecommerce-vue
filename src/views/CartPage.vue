@@ -50,16 +50,9 @@ export default {
       );
     },
     checkoutComplete() {
-      const dataToPass = this.productsStore.purchasedItems.map((item) => ({
-        id: item.id,
-        image: item.image,
-        title: item.title,
-        price: item.price,
-        quantity: item.quantity,
-      }));
+      this.productsStore.clearCart();
       this.$router.push({
         path: "/thank-you",
-        query: { data: JSON.stringify(dataToPass) },
       });
     },
   },

@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
+
 export const useProductsStore = defineStore("products", {
-  state: () => ({ purchasedItems: [] }),
+  state: () => ({ purchasedItems: [], addedCartItems: [] }),
+
   getters: {},
   actions: {
     addToCart(item, quantity) {
@@ -13,6 +15,10 @@ export const useProductsStore = defineStore("products", {
         item.quantity = quantity;
         this.purchasedItems.push(item);
       }
+      this.addedCartItems = [...this.purchasedItems];
+    },
+    clearCart() {
+      this.purchasedItems = [];
     },
   },
 
