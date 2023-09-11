@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import ProductsPage from "@/views/ProductsPage.vue";
 import CartPage from "@/views/CartPage.vue";
 import ThankYou from "@/views/ThankYou.vue";
+import SignPage from "@/views/SignPage.vue";
 const routes = [
   {
     path: "/",
@@ -14,6 +15,10 @@ const routes = [
   {
     path: "/thank-you",
     component: ThankYou,
+  },
+  {
+    path: "/sign-in",
+    component: SignPage,
   },
 ];
 const router = createRouter({
