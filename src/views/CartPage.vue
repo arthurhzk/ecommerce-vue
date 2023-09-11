@@ -12,10 +12,7 @@
     <p v-else>Valor total a pagar R$ {{ total }}</p>
     <p></p>
   </div>
-  <the-button
-    @checkout="checkoutComplete"
-    :disabled="!total"
-    variant="blue-button"
+  <the-button @click="checkoutComplete" :disabled="!total" variant="blue-button"
     >Finalizar compra</the-button
   >
 </template>
@@ -45,7 +42,7 @@ export default {
     },
     totalItems() {
       this.total = this.productsStore.purchasedItems.reduce(
-        (acc, item) => acc + item.price * item.quantity,
+        (accumulator, item) => accumulator + item.price * item.quantity,
         0
       );
     },

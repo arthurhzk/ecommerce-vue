@@ -14,6 +14,7 @@
 import items from "@/data/items.js";
 import ProductCard from "@/components/ProductCard.vue";
 import { useProductsStore } from "@/store/productsStore.js";
+
 export default {
   data() {
     return {

@@ -1,6 +1,5 @@
 <template>
   <button
-    @click="checkoutComplete"
     class="blue"
     :class="{
       red: variant === 'red',
@@ -17,12 +16,6 @@ export default {
     variant: {
       type: String,
       default: "red",
-    },
-  },
-  emits: ["checkout"],
-  methods: {
-    checkoutComplete() {
-      this.$emit("checkout");
     },
   },
 };

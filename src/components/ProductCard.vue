@@ -1,8 +1,14 @@
 <template>
   <h1>{{ data.title }}</h1>
-  <img :src="data.image" alt="" />
+  <router-link :to="`/products/${data.id}`">
+    <img :src="data.image" alt="" />
+  </router-link>
   <p>R$ {{ data.price }}</p>
-  <input type="number" v-model="quantityValue" min="1" />
+  <quantity-button
+    @increment="incrementItem"
+    @decrement="decrementItem"
+  ></quantity-button>
+  <p>{{ quantityValue }}</p>
   <the-button
     :disabled="!quantityValue"
     variant="blue-button"
@@ -10,9 +16,9 @@
     >Comprar</the-button
   >
 </template>
-
 <script>
 import TheButton from "@/components/atoms/TheButton.vue";
+import QuantityButton from "@/components/atoms/QuantityButton.vue";
 export default {
   props: {
     data: {
@@ -22,17 +28,26 @@ export default {
   },
   data() {
     return {
-      quantityValue: null,
+      quantityValue: 0,
     };
   },
   emits: ["buy"],
   components: {
     TheButton,
+    QuantityButton,
   },
   methods: {
     onButtonClick() {
       this.$emit("buy", this.quantityValue);
       this.quantityValue = null;
+    },
+    incrementItem() {
+      this.quantityValue++;
+    },
+    decrementItem() {
+      if (this.quantityValue > 0) {
+        this.quantityValue--;
+      }
     },
   },
 };

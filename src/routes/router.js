@@ -3,10 +3,15 @@ import ProductsPage from "@/views/ProductsPage.vue";
 import CartPage from "@/views/CartPage.vue";
 import ThankYou from "@/views/ThankYou.vue";
 import FormPage from "@/views/FormPage.vue";
+import ProductDetailPage from "@/views/ProductDetailPage.vue";
 const routes = [
   {
     path: "/",
     component: ProductsPage,
+  },
+  {
+    path: "/products/:id",
+    component: ProductDetailPage,
   },
   {
     path: "/cart",

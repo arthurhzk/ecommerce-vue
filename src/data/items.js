@@ -3,6 +3,7 @@ const items = [
     id: 1,
     title: "Macbook Pro",
     price: 2500.0,
+
     image:
       "https://a-static.mlcdn.com.br/280x210/notebook-macbook-air-133-apple-m1-8gb-256gb-ssd-prateado/magazineluiza/227625500/43ed459d5a87a2e62e35e5eb394b0c94.jpg",
   },
@@ -23,10 +24,17 @@ const items = [
   },
   {
     id: 4,
-    title: "Another Product",
-    price: 10,
+    title: "Tablet Fire HD 8 Kids",
+    price: 320,
     image:
       "https://a-static.mlcdn.com.br/280x210/tablet-amazon-fire-hd-geracao-2023-infantil-inportado/vemkitemprodutosonline/0ee91dd61a0011eeace74201ac185049/2db6ebd5694279e765166083ca906e72.jpeg",
+  },
+  {
+    id: 5,
+    title: "Beats Headphone by Dr. Dre",
+    price: 500,
+    image:
+      "https://a-static.mlcdn.com.br/352x470/headphone-fone-de-ouvido-beats-ep-vermelho/magazineluiza/218451400/6a944559acf71d3312caccd06d8b5df3.jpg",
   },
 ];
 
