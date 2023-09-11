@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import router from "./routes/router";
 export default {
   methods: {},
 };

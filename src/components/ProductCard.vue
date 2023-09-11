@@ -32,6 +32,7 @@ export default {
   methods: {
     onButtonClick() {
       this.$emit("buy", this.quantityValue);
+      this.quantityValue = null;
     },
   },
 };

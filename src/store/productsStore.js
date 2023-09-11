@@ -15,4 +15,6 @@ export const useProductsStore = defineStore("products", {
       }
     },
   },
+
+  persist: true,
 });

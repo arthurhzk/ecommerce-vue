@@ -4,14 +4,20 @@
     <div v-for="(item, index) in productsStore.purchasedItems" :key="item.id">
       <img :src="item.image" alt="" />
       <p>{{ item.title }}</p>
-      <p>{{ item.price }}</p>
-      <p>{{ item.quantity }}</p>
+      <p>Valor: R$ {{ item.price }}</p>
+      <p>Quantidade: {{ item.quantity }}</p>
       <the-button variant="red" @click="deleteItem(index)">X</the-button>
     </div>
     <p v-if="total == 0">{{ cartEmptyMessage }}</p>
-    <p v-else>R${{ total }}</p>
+    <p v-else>Valor total a pagar R$ {{ total }}</p>
     <p></p>
   </div>
+  <the-button
+    @checkout="checkoutComplete"
+    :disabled="!total"
+    variant="blue-button"
+    >Finalizar compra</the-button
+  >
 </template>
 
 <script>
@@ -42,6 +48,19 @@ export default {
         (acc, item) => acc + item.price * item.quantity,
         0
       );
+    },
+    checkoutComplete() {
+      const dataToPass = this.productsStore.purchasedItems.map((item) => ({
+        id: item.id,
+        image: item.image,
+        title: item.title,
+        price: item.price,
+        quantity: item.quantity,
+      }));
+      this.$router.push({
+        path: "/thank-you",
+        query: { data: JSON.stringify(dataToPass) },
+      });
     },
   },
   components: {
