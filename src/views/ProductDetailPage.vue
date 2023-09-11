@@ -1,6 +1,8 @@
 <template>
   <div v-if="item">
     <h1>{{ item.title }}</h1>
+    <img :src="item.image" />
+    <p>{{ item.description }}</p>
   </div>
 </template>
 
