@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label for="">{{ label }}</label>
+    <label>{{ label }}</label>
     <v-text-field
       :type="type"
       :placeholder="label"
@@ -10,21 +10,21 @@
 </template>
 
 <script>
+emits: ["input"];
 export default {
   props: {
     label: {
       type: String,
-    },
-    modelValue: {
-      type: String,
+      required: true,
     },
     type: {
       type: String,
+      required: true,
     },
   },
   methods: {
     updateValue(event) {
-      this.$emit("update:modelValue", event.target.value);
+      this.$emit(event.target.value);
     },
   },
 };

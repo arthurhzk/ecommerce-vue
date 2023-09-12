@@ -7,12 +7,6 @@
 <script>
 export default {
   name: "TheButton",
-  props: {
-    variant: {
-      type: String,
-      default: "",
-    },
-  },
 };
 </script>
 

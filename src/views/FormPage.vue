@@ -1,29 +1,31 @@
 <template>
-  <form>
-    <base-input @input="onNameInput" label="Name" type="text"></base-input>
+  <form @submit.prevent="submitForm">
+    <base-input label="Name" type="text" @input="onNameInput"></base-input>
     <base-input
-      v-model="event.lastName"
       label="Last Name"
       type="text"
       @input="onLastNameInput"
     ></base-input>
-    <base-input @input="onCityInput" label="City" type="text"></base-input>
+    <base-input label="Email" type="email" @input="onEmailInput"></base-input>
     <base-input
-      v-model="event.password"
       label="Password"
       type="password"
       @input="onPasswordInput"
     ></base-input>
-    <base-input @input="onEmailInput" label="Email" type="email"></base-input>
+    <base-input label="City" type="text" @input="onCityInput"></base-input>
+
+    <the-button @click="submitForm($event)">Cadastrar</the-button>
   </form>
 </template>
 
 <script>
 import BaseInput from "@/components/atoms/BaseInput.vue";
+import TheButton from "@/components/atoms/TheButton.vue";
 export default {
   name: "FormPage",
   components: {
     BaseInput,
+    TheButton,
   },
   data() {
     return {
@@ -32,6 +34,7 @@ export default {
         lastName: "",
         city: "",
         email: "",
+        password: "",
       },
     };
   },
@@ -50,6 +53,13 @@ export default {
     },
     onEmailInput(event) {
       console.log("Email input value:", event.target.value);
+    },
+    submitForm() {
+      console.log("Name input value:", this.event.name);
+      console.log("Last Name input value:", this.event.lastName);
+      console.log("City input value:", this.event.city);
+      console.log("Password input value:", this.event.password);
+      console.log("Email input value:", this.event.email);
     },
   },
 };
