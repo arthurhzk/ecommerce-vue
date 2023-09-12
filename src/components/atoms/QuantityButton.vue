@@ -1,6 +1,6 @@
 <template>
-  <button @click="incrementItem">+</button>
-  <button @click="decrementItem">-</button>
+  <v-btn @click="incrementItem">+</v-btn>
+  <v-btn @click="decrementItem">-</v-btn>
 </template>
 
 <script>

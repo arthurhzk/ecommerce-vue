@@ -1,12 +1,7 @@
 <template>
-  <button
-    class="blue"
-    :class="{
-      red: variant === 'red',
-    }"
-  >
+  <v-btn>
     <slot></slot>
-  </button>
+  </v-btn>
 </template>
 
 <script>
@@ -22,31 +17,7 @@ export default {
 </script>
 
 <style>
-.blue {
-  display: inline-block;
-  background-color: #007bff;
-  color: #fff;
-  padding: 8px 15px;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: background-color 0.3s;
-  cursor: pointer;
-  border: none;
-}
-
-.red {
-  display: inline-block;
-  background-color: #dc3545;
-  color: #fff;
-  padding: 8px 15px;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: background-color 0.3s;
-  cursor: pointer;
-  border: none;
-}
 button:disabled {
-  background-color: gray;
-  cursor: default;
+  cursor: not-allowed;
 }
 </style>

@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import ProductsPage from "@/views/ProductsPage.vue";
 import CartPage from "@/views/CartPage.vue";
-import ThankYou from "@/views/ThankYou.vue";
+import ThankYouPage from "@/views/ThankYouPage.vue";
 import FormPage from "@/views/FormPage.vue";
 import ProductDetailPage from "@/views/ProductDetailPage.vue";
 const routes = [
@@ -19,7 +19,7 @@ const routes = [
   },
   {
     path: "/thank-you",
-    component: ThankYou,
+    component: ThankYouPage,
   },
   {
     path: "/sign-in",

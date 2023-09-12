@@ -1,5 +1,8 @@
 <template>
-  <input type="text" placeholder="pesquise aqui" v-model="inputValue" />
+  <v-text-field
+    v-model="inputValue"
+    label="Pequise aqui o seu produto"
+  ></v-text-field>
   <p v-if="!searchItems.length">{{ emptySearch }}</p>
   <product-card
     v-for="item in searchItems"
