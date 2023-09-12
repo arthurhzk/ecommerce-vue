@@ -4,8 +4,7 @@
     <v-text-field
       :type="type"
       :placeholder="label"
-      :value="modelValue"
-      @input="updateValue"
+      @input="updateValue($event)"
     />
   </div>
 </template>
@@ -15,15 +14,12 @@ export default {
   props: {
     label: {
       type: String,
-      default: "",
     },
     modelValue: {
-      type: [String, Number],
-      default: "",
+      type: String,
     },
     type: {
       type: String,
-      default: "",
     },
   },
   methods: {
