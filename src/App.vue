@@ -1,14 +1,15 @@
 <template>
-  <router-link to="/">Produtos</router-link>
-  <router-link to="cart">Cart</router-link>
-  <router-link to="sign-in">Sign in</router-link>
+  <the-nav></the-nav>
+
   <router-view></router-view>
 </template>
 
 <script>
+import TheNav from "@/components/TheNav.vue";
+
 export default {
-  methods: {},
+  components: {
+    TheNav,
+  },
 };
 </script>
-
-<style scoped></style>
