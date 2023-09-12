@@ -1,6 +1,6 @@
 <template>
   <h1>{{ data.title }}</h1>
-  <router-link :to="`/products/${data.id}`">
+  <router-link :to="`/${data.id}`">
     <img :src="data.image" alt="" />
   </router-link>
   <p>R$ {{ data.price }}</p>

@@ -9,6 +9,12 @@
       @decrement="decrementItem()"
     ></quantity-button>
     <p>{{ item.description }}</p>
+    <the-button @click="onBuy(item, quantity)"
+      >Adicionar ao carrinho</the-button
+    >
+    <v-snackbar v-model="addedProduct"
+      >Produto adicionado ao carrinho
+    </v-snackbar>
   </div>
 </template>
 
@@ -23,6 +29,7 @@ export default {
     return {
       item: items.find((item) => item.id == this.$route.params.id),
       quantity: 0,
+      addedProduct: false,
     };
   },
   components: {
@@ -49,6 +56,10 @@ export default {
         (accumulator, item) => accumulator + item.price * item.quantity,
         0
       );
+    },
+    onBuy(item, quantity) {
+      this.productsStore.addToCart(item, quantity);
+      item.addedProduct = true;
     },
   },
 };
