@@ -12,7 +12,7 @@
       label="Password"
       type="password"
     ></base-input>
-    <base-input v-model="event.email" label="Email" type="email"> </base-input>
+    <base-input v-model="event.email" label="Email" type="email"></base-input>
   </form>
 </template>
 

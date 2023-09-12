@@ -15,6 +15,7 @@
     @click="onButtonClick"
     >Comprar</the-button
   >
+  <slot></slot>
 </template>
 <script>
 import TheButton from "@/components/atoms/TheButton.vue";

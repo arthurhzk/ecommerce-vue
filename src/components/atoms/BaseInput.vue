@@ -1,7 +1,7 @@
 <template>
   <div>
     <label for="">{{ label }}</label>
-    <input
+    <v-text-field
       :type="type"
       :placeholder="label"
       :value="modelValue"

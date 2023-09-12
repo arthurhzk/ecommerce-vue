@@ -6,6 +6,10 @@
       <p>{{ item.title }}</p>
       <p>Valor: R$ {{ item.price }}</p>
       <p>Quantidade: {{ item.quantity }}</p>
+      <quantity-button
+        @increment="incrementItem(item)"
+        @decrement="decrementItem(item)"
+      ></quantity-button>
       <the-button variant="red" @click="deleteItem(index)">X</the-button>
     </div>
     <p v-if="total == 0">{{ cartEmptyMessage }}</p>
@@ -20,7 +24,7 @@
 <script>
 import { useProductsStore } from "@/store/productsStore.js";
 import TheButton from "@/components/atoms/TheButton.vue";
-
+import QuantityButton from "@/components/atoms/QuantityButton.vue";
 export default {
   data() {
     return {
@@ -52,9 +56,27 @@ export default {
         path: "/thank-you",
       });
     },
+    incrementItem(item) {
+      item.quantity++;
+      this.updateCartPrice();
+    },
+    decrementItem(item) {
+      if (item.quantity > 0) {
+        item.quantity--;
+        this.updateCartPrice();
+      }
+    },
+    updateCartPrice() {
+      this.total = this.productsStore.purchasedItems.reduce(
+        (accumulator, item) => accumulator + item.price * item.quantity,
+        0
+      );
+    },
   },
+
   components: {
     TheButton,
+    QuantityButton,
   },
 };
 </script>

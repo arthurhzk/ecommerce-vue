@@ -10,6 +10,7 @@
     :data="item"
     @buy="(quantity) => onBuy(item, quantity)"
   >
+    <p v-if="item.addedToCart">Produto adicionado ao carrinho</p>
   </product-card>
 </template>
 
@@ -17,23 +18,28 @@
 import items from "@/data/items.js";
 import ProductCard from "@/components/ProductCard.vue";
 import { useProductsStore } from "@/store/productsStore.js";
-
+import BaseInput from "@/components/atoms/BaseInput.vue";
 export default {
   data() {
     return {
       items: items,
       inputValue: "",
       emptySearch: "Não foi possível localizar o seu produto",
+      addedProduct: false,
     };
   },
   setup() {
     const productsStore = useProductsStore();
     return { productsStore };
   },
-  components: { ProductCard },
+  components: { ProductCard, BaseInput },
   methods: {
     onBuy(item, quantity) {
       this.productsStore.addToCart(item, quantity);
+      item.addedToCart = true;
+      setTimeout(() => {
+        item.addedToCart = false;
+      }, 5000);
     },
   },
   computed: {

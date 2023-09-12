@@ -4,7 +4,9 @@
 
     <v-divider class="ms-3" inset vertical></v-divider>
 
-    <v-toolbar-title>NASTY FUNK STORE</v-toolbar-title>
+    <router-link to="/" class="no-decor">
+      <v-toolbar-title>NASTY FUNK STORE</v-toolbar-title>
+    </router-link>
 
     <v-spacer></v-spacer>
 
