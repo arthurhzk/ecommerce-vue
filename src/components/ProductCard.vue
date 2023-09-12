@@ -9,10 +9,7 @@
     @decrement="decrementItem"
   ></quantity-button>
   <p>{{ quantityValue }}</p>
-  <the-button
-    :disabled="!quantityValue"
-    variant="blue-button"
-    @click="onButtonClick"
+  <the-button :disabled="!quantityValue" @click="onButtonClick"
     >Comprar</the-button
   >
   <slot></slot>

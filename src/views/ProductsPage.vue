@@ -10,7 +10,9 @@
     :data="item"
     @buy="(quantity) => onBuy(item, quantity)"
   >
-    <p v-if="item.addedToCart">Produto adicionado ao carrinho</p>
+    <v-snackbar v-model="item.addedProduct"
+      >Produto adicionado ao carrinho
+    </v-snackbar>
   </product-card>
 </template>
 
@@ -36,10 +38,7 @@ export default {
   methods: {
     onBuy(item, quantity) {
       this.productsStore.addToCart(item, quantity);
-      item.addedToCart = true;
-      setTimeout(() => {
-        item.addedToCart = false;
-      }, 5000);
+      item.addedProduct = true;
     },
   },
   computed: {

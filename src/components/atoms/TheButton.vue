@@ -10,7 +10,7 @@ export default {
   props: {
     variant: {
       type: String,
-      default: "red",
+      default: "",
     },
   },
 };
