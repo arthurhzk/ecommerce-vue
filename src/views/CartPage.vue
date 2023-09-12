@@ -58,19 +58,13 @@ export default {
     },
     incrementItem(item) {
       item.quantity++;
-      this.updateCartPrice();
+      this.totalItems();
     },
     decrementItem(item) {
       if (item.quantity > 0) {
         item.quantity--;
-        this.updateCartPrice();
+        this.totalItems();
       }
-    },
-    updateCartPrice() {
-      this.total = this.productsStore.purchasedItems.reduce(
-        (accumulator, item) => accumulator + item.price * item.quantity,
-        0
-      );
     },
   },
 
