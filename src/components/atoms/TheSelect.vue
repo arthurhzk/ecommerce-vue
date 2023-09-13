@@ -12,11 +12,12 @@ export default {
   props: {
     locations: {
       type: Array,
-      required: true,
     },
     required: {
       type: Boolean,
-      default: true,
+    },
+    parcels: {
+      type: Array,
     },
   },
   methods: {

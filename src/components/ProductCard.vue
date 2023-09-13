@@ -3,7 +3,7 @@
   <router-link :to="`/${data.id}`">
     <img :src="data.image" alt="" />
   </router-link>
-  <p>R$ {{ data.price }}</p>
+  <p>R$ {{ data.price.toFixed(2) }}</p>
   <quantity-button
     @increment="incrementItem"
     @decrement="decrementItem"

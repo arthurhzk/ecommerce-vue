@@ -4,7 +4,7 @@
     <div v-for="(item, index) in productsStore.purchasedItems" :key="item.id">
       <img :src="item.image" alt="" />
       <p>{{ item.title }}</p>
-      <p>Valor: R$ {{ item.price }}</p>
+      <p>Valor: R$ {{ item.price.toFixed(2) }}</p>
       <p>Quantidade: {{ item.quantity }}</p>
       <quantity-button
         @increment="incrementItem(item)"
@@ -13,7 +13,7 @@
       <the-button @click="deleteItem(index)">X</the-button>
     </div>
     <p v-if="total == 0">{{ cartEmptyMessage }}</p>
-    <p v-else>Valor total a pagar R$ {{ total }}</p>
+    <p v-else>Valor total a pagar R$ {{ total.toFixed(2) }}</p>
     <p></p>
   </div>
   <the-button @click="checkoutComplete" :disabled="!total"
@@ -51,6 +51,7 @@ export default {
       );
     },
     checkoutComplete() {
+      this.$router.push("/thank-you");
       this.productsStore.clearCart();
     },
     incrementItem(item) {
