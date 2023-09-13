@@ -5,7 +5,6 @@ const formFields = [
   { label: "Password", type: "password", value: "" },
   { label: "Confirm Password", type: "password", value: "" },
   { label: "City", type: "text", value: "" },
-  { label: "State", type: "text", value: "" },
 ];
 
 export default formFields;

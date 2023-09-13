@@ -1,0 +1,81 @@
+const fieldStates = [
+  {
+    state: "Acre",
+  },
+  {
+    state: "Alagoas",
+  },
+  {
+    state: "Amapá",
+  },
+  {
+    state: "Amazonas",
+  },
+  {
+    state: "Bahia",
+  },
+  {
+    state: "Ceará",
+  },
+  {
+    state: "Espírito Santo",
+  },
+  {
+    state: "Goiás",
+  },
+  {
+    state: "Maranhão",
+  },
+  {
+    state: "Mato Grosso",
+  },
+  {
+    state: "Mato Grosso do Sul",
+  },
+  {
+    state: "Minas Gerais",
+  },
+  {
+    state: "Pará",
+  },
+  {
+    state: "Paraíba",
+  },
+  {
+    state: "Paraná",
+  },
+  {
+    state: "Pernambuco",
+  },
+  {
+    state: "Piauí",
+  },
+  {
+    state: "Rio de Janeiro",
+  },
+  {
+    state: "Rio Grande do Norte",
+  },
+  {
+    state: "Rio Grande do Sul",
+  },
+  {
+    state: "Rondônia",
+  },
+  {
+    state: "Roraima",
+  },
+  {
+    state: "Santa Catarina",
+  },
+  {
+    state: "São Paulo",
+  },
+  {
+    state: "Sergipe",
+  },
+  {
+    state: "Tocantins",
+  },
+];
+export default fieldStates;

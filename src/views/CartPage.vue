@@ -10,13 +10,13 @@
         @increment="incrementItem(item)"
         @decrement="decrementItem(item)"
       ></quantity-button>
-      <the-button variant="red" @click="deleteItem(index)">X</the-button>
+      <the-button @click="deleteItem(index)">X</the-button>
     </div>
     <p v-if="total == 0">{{ cartEmptyMessage }}</p>
     <p v-else>Valor total a pagar R$ {{ total }}</p>
     <p></p>
   </div>
-  <the-button @click="checkoutComplete" :disabled="!total" variant="blue-button"
+  <the-button @click="checkoutComplete" :disabled="!total"
     >Finalizar compra</the-button
   >
 </template>
@@ -52,9 +52,6 @@ export default {
     },
     checkoutComplete() {
       this.productsStore.clearCart();
-      this.$router.push({
-        path: "/thank-you",
-      });
     },
     incrementItem(item) {
       item.quantity++;

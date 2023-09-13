@@ -24,14 +24,6 @@ export default {
     const productsStore = useProductsStore();
     return { productsStore };
   },
-  mounted() {
-    this.totalItems();
-    setTimeout(() => {
-      this.$router.push({
-        path: "/",
-      });
-    }, 8000);
-  },
   methods: {
     totalItems() {
       this.total = this.productsStore.addedCartItems.reduce(

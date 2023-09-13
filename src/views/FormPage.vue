@@ -8,6 +8,7 @@
       @input="onInput(index, $event)"
       v-model="field.value"
     ></base-input>
+    <the-select></the-select>
     <the-button type="submit">Cadastrar</the-button>
   </form>
 </template>
@@ -15,13 +16,14 @@
 <script>
 import BaseInput from "@/components/atoms/BaseInput.vue";
 import TheButton from "@/components/atoms/TheButton.vue";
-import formFields from "@/data/formFields.js";
-
+import TheSelect from "@/components/atoms/TheSelect.vue";
+import formFields from "@/data/formFields";
 export default {
   name: "FormPage",
   components: {
     BaseInput,
     TheButton,
+    TheSelect,
   },
   data() {
     return {
