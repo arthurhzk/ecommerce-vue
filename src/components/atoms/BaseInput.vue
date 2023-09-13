@@ -2,6 +2,7 @@
   <div>
     <label>{{ label }}</label>
     <v-text-field
+      :required="required"
       :type="type"
       :placeholder="label"
       @input="updateValue($event)"
@@ -21,10 +22,14 @@ export default {
       type: String,
       required: true,
     },
+    required: {
+      type: Boolean,
+      default: true,
+    },
   },
   methods: {
     updateValue(event) {
-      this.$emit(event.target.value);
+      this.$emit("input", event.target.value);
     },
   },
 };

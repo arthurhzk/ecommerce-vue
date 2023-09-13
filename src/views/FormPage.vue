@@ -1,6 +1,7 @@
 <template>
   <form @submit.prevent="submitForm">
     <base-input
+      :required="true"
       v-for="(field, index) in formFields"
       :key="index"
       :label="field.label"
@@ -8,8 +9,15 @@
       @input="onInput(index, $event)"
       v-model="field.value"
     ></base-input>
-    <the-select :locations="fieldStates"></the-select>
+    <the-select
+      required="required"
+      v-model="selectedLocation"
+      :locations="fieldStates"
+    ></the-select>
     <the-button type="submit">Cadastrar</the-button>
+    <p style="color: green">{{ accountCreationMessage }}</p>
+    <p style="color: red">{{ passwordMismatchMessage }}</p>
+    <p style="color: red">{{ passwordLengthMessage }}</p>
   </form>
 </template>
 
@@ -31,15 +39,50 @@ export default {
     return {
       formFields: formFields,
       fieldStates: fieldStates,
+      selectedLocation: null,
+      checkPassword: false,
+      signAccount: false,
+      checkPasswordLength: false,
     };
+  },
+  computed: {
+    passwordMismatchMessage() {
+      return this.checkPassword ? "As senhas não conferem" : "";
+    },
+    accountCreationMessage() {
+      return this.signAccount ? "Conta criada com sucesso!" : "";
+    },
+    passwordLengthMessage() {
+      return this.checkPasswordLength ? "No mínimo 6 caracteres" : "";
+    },
   },
   methods: {
     onInput(index, event) {
       this.formFields[index].value = event.target.value;
     },
     submitForm() {
-      for (const field of this.formFields) {
-        console.log(`${field.label} input value:`, field.value);
+      const passwordField1 = this.formFields[3].value;
+      const passwordField2 = this.formFields[4].value;
+      const passwordLength = 6;
+
+      if (
+        passwordField1.length < passwordLength ||
+        passwordField2.length < passwordLength
+      ) {
+        this.checkPasswordLength = true;
+      } else if (passwordField1 !== passwordField2) {
+        this.checkPassword = true;
+      } else {
+        for (const field of this.formFields) {
+          console.log(`${field.label} input value:`, field.value);
+        }
+        console.log("Selected state:", this.selectedLocation);
+        this.checkPassword = false;
+        this.checkPasswordLength = false;
+        this.signAccount = true;
+        setTimeout(() => {
+          this.signAccount = false;
+        }, 3000);
       }
     },
   },
