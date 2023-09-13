@@ -1,13 +1,14 @@
 <template>
   <div class="text-center">
-    <v-select placeholder="State" :states="state"></v-select>
+    <v-select v-model="location" :items="locations" label="State"></v-select>
+    <v-menu :location="location"> </v-menu>
   </div>
 </template>
 <script>
 export default {
   props: {
-    states: {
-      type: Object,
+    locations: {
+      type: Array,
       required: true,
     },
   },
