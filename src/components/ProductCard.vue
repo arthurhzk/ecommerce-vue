@@ -7,6 +7,9 @@
     <div class="my-2">
       <p class="text-h5 font-weight-bold">R$ {{ data.price.toFixed(2) }}</p>
     </div>
+
+    <div class="text-grey ms-4">Rating: {{ data.rating }}</div>
+
     <div class="d-flex align-center my-2">
       <quantity-button
         @increment="incrementItem"

@@ -60,25 +60,21 @@ export default {
   },
   computed: {
     parcelNumbersData() {
-      let result = [];
-      this.parcelNumbers.forEach((number) => {
-        let parcelValue = 0;
-        if (number <= 3) {
-          parcelValue = (this.item.price / number) * this.quantity;
+      const totalValue = this.quantity * this.item.price;
+
+      return this.parcelNumbers.map((parcel) => {
+        if (parcel < 4) {
+          return `${parcel}x de R$ ${(totalValue / parcel).toFixed(
+            2
+          )} sem juros`;
         } else {
           const interestRate = 0.05;
-          parcelValue =
-            (this.item.price / number) * this.quantity * (1 + interestRate);
-        }
-        const formattedParcelValue = parcelValue.toFixed(2);
-
-        if (number < 4) {
-          result.push(`Em ${number}x de R$ ${formattedParcelValue} sem juros`);
-        } else {
-          result.push(`Em ${number}x de R$ ${formattedParcelValue}`);
+          return `${parcel}x de R$ ${(
+            (totalValue / parcel) *
+            (1 + interestRate)
+          ).toFixed(2)}`;
         }
       });
-      return result;
     },
 
     totalItemValue() {
@@ -129,5 +125,6 @@ export default {
 .img-enlarged-size {
   height: 400px;
   transition: all 0.2s;
+  cursor: zoom-in;
 }
 </style>
