@@ -20,7 +20,7 @@
       <v-divider vertical></v-divider>
 
       <router-link to="cart" class="no-decor">
-        <v-btn variant="text">Carrinho</v-btn>
+        <v-btn variant="text">Carrinho {{ totalCartItems }}</v-btn>
       </router-link>
 
       <v-divider vertical></v-divider>
@@ -48,7 +48,23 @@
 </style>
 
 <script>
+import items from "@/data/items.js";
+import { useProductsStore } from "@/store/productsStore.js";
 export default {
   name: "TheNav",
+  data() {
+    return {
+      items: items,
+    };
+  },
+  setup() {
+    const productsStore = useProductsStore();
+    return { productsStore };
+  },
+  computed: {
+    totalCartItems() {
+      return this.productsStore.totalCartItems;
+    },
+  },
 };
 </script>

@@ -5,7 +5,13 @@ export const useProductsStore = defineStore("products", {
     addedCartItems: [],
   }),
 
-  getters: {},
+  getters: {
+    totalCartItems() {
+      return this.purchasedItems.reduce((total, item) => {
+        return total + item.quantity;
+      }, 0);
+    },
+  },
   actions: {
     addToCart(item, quantity) {
       const purchasedItem = this.purchasedItems.find((purchasedItem) => {
