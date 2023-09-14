@@ -95,6 +95,9 @@ export default {
     deleteItem(index) {
       this.productsStore.purchasedItems.splice(index, 1);
       this.totalItems();
+      if (this.productsStore.purchasedItems.length === 0) {
+        this.conditionToAppear = false;
+      }
     },
     totalItems() {
       this.total = this.productsStore.purchasedItems.reduce(

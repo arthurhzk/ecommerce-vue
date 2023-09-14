@@ -11,7 +11,7 @@
         flat
         tile
       >
-        &copy; 2023 Nasty Funk Store
+        &copy; 2023 Nasty Funk Store - Stay Nasty
       </v-card>
     </v-footer>
   </v-app>
