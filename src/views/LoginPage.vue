@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="submitForm">
-    <base-input type="email"></base-input>
-    <base-input type="password"></base-input>
+    <base-input label="E-mail" type="email"></base-input>
+    <base-input label="Password" type="password"></base-input>
     <the-button @click="submitForm">Login</the-button>
     <p>
       Não tem uma conta?

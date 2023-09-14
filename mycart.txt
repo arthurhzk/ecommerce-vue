@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <v-card-title>Carrinho</v-card-title>
+        <h1>Carrinho</h1>
         <v-divider></v-divider>
       </v-col>
     </v-row>
@@ -32,7 +32,6 @@
     <v-row>
       <v-col cols="12">
         <the-select
-          label="Parcelas"
           v-if="conditionToAppear"
           :locations="parcelNumbersData"
         ></the-select>
@@ -61,7 +60,7 @@ export default {
       total: 0,
       cartEmptyMessage: "O seu carrinho está vazio!",
       parcelNumbers: parcelNumbers,
-      conditionToAppear: false,
+      conditionToAppear: true,
     };
   },
   computed: {
@@ -87,9 +86,6 @@ export default {
   },
   mounted() {
     this.totalItems();
-    if (this.total > 0) {
-      this.conditionToAppear = true;
-    }
   },
   methods: {
     deleteItem(index) {
@@ -114,8 +110,7 @@ export default {
       if (item.quantity > 0) {
         item.quantity--;
         this.totalItems();
-      }
-      if (item.quantity === 0) {
+      } else if (item.quantity < 1) {
         this.deleteItem(item);
         this.conditionToAppear = false;
       }
