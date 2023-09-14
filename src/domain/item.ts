@@ -1,3 +1,11 @@
+export interface Instrument {
+  id: number;
+  title: string;
+  price: number;
+  image: string;
+  description: string;
+}
+
 // id: 2,
 // title: "Asus ROG Gaming",
 // price: 1000.0,

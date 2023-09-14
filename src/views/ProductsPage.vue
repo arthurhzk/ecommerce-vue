@@ -21,6 +21,7 @@ import items from "@/data/items.js";
 import ProductCard from "@/components/ProductCard.vue";
 import { useProductsStore } from "@/store/productsStore.js";
 import BaseInput from "@/components/atoms/BaseInput.vue";
+
 export default {
   data() {
     return {

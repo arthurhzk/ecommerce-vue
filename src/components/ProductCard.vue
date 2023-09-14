@@ -1,22 +1,30 @@
 <template>
-  <h1>{{ data.title }}</h1>
-  <router-link :to="`/${data.id}`">
-    <img :src="data.image" alt="" />
-  </router-link>
-  <p>R$ {{ data.price.toFixed(2) }}</p>
-  <quantity-button
-    @increment="incrementItem"
-    @decrement="decrementItem"
-  ></quantity-button>
-  <p>{{ quantityValue }}</p>
-  <the-button :disabled="!quantityValue" @click="onButtonClick"
-    >Comprar</the-button
-  >
-  <slot></slot>
+  <v-card class="my-4" max-width="374">
+    <v-card-title class="text-h6">{{ data.title }}</v-card-title>
+    <router-link :to="`/${data.id}`">
+      <v-img cover height="250" :src="data.image"></v-img>
+    </router-link>
+    <div class="my-2">
+      <p class="text-h5 font-weight-bold">R$ {{ data.price.toFixed(2) }}</p>
+    </div>
+    <div class="d-flex align-center my-2">
+      <quantity-button
+        @increment="incrementItem"
+        @decrement="decrementItem"
+      ></quantity-button>
+      <p class="mx-2">{{ quantityValue }}</p>
+      <the-button :disabled="!quantityValue" @click="onButtonClick"
+        >Comprar</the-button
+      >
+    </div>
+    <slot></slot>
+  </v-card>
 </template>
+
 <script>
 import TheButton from "@/components/atoms/TheButton.vue";
 import QuantityButton from "@/components/atoms/QuantityButton.vue";
+
 export default {
   props: {
     data: {

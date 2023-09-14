@@ -28,6 +28,11 @@
       <router-link to="sign-in" class="no-decor">
         <v-btn variant="text">Cadastrar</v-btn>
       </router-link>
+      <v-divider vertical></v-divider>
+
+      <router-link to="login" class="no-decor">
+        <v-btn variant="text">Login</v-btn>
+      </router-link>
     </v-toolbar-items>
 
     <v-divider vertical></v-divider>
