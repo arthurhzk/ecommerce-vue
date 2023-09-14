@@ -24,10 +24,10 @@ export default {
     const productsStore = useProductsStore();
     return { productsStore };
   },
-  methods: {
-    totalItems() {
-      this.total = this.productsStore.addedCartItems.reduce(
-        (accumulator, item) => accumulator + item.price * item.quantity,
+  computed: {
+    total() {
+      return this.productsStore.addedCartItems.reduce(
+        (acc, item) => acc + item.price * item.quantity + this.total,
         0
       );
     },

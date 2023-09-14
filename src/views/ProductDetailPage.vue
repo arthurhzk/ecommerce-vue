@@ -1,7 +1,15 @@
 <template>
   <div v-if="item">
     <h1>{{ item.title }}</h1>
-    <img :src="item.image" />
+    <img
+      :class="{
+        'img-default-size': true,
+        'img-enlarged-size': imageEnlarged,
+      }"
+      @mouseover="enlargeImage"
+      @mouseout="shrinkImage"
+      :src="$options.imageSource"
+    />
     <p>Valor do produto R$ {{ item.price.toFixed(2) }}</p>
 
     <p>{{ parceledValue }}</p>
@@ -38,6 +46,7 @@ export default {
       addedProduct: false,
       noProduct: true,
       parcelNumbers: parcelNumbers,
+      imageEnlarged: false,
     };
   },
   components: {
@@ -98,6 +107,27 @@ export default {
       item.addedProduct = true;
       this.quantity = 0;
     },
+    enlargeImage() {
+      console.log("enlarged");
+      this.imageEnlarged = true;
+    },
+    shrinkImage() {
+      this.imageEnlarged = false;
+    },
+  },
+  created() {
+    this.$options.imageSource = this.item.image;
   },
 };
 </script>
+<style>
+.img-default-size {
+  height: 200px;
+  transition: all 0.2s;
+}
+
+.img-enlarged-size {
+  height: 400px;
+  transition: all 0.2s;
+}
+</style>
