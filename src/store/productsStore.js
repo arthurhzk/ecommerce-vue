@@ -1,10 +1,8 @@
 import { defineStore } from "pinia";
-import parcelNumbers from "@/data/parcelNumbers.js";
 export const useProductsStore = defineStore("products", {
   state: () => ({
     purchasedItems: [],
     addedCartItems: [],
-    parcelNumbers: parcelNumbers,
   }),
 
   getters: {},

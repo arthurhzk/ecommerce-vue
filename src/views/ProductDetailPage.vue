@@ -1,6 +1,10 @@
 <template>
   <div v-if="item">
-    <h1>{{ item.title }}</h1>
+    <v-card>
+      <v-card-title>
+        <span class="headline">{{ item.title }}</span>
+      </v-card-title>
+    </v-card>
     <img
       :class="{
         'img-default-size': true,
@@ -8,18 +12,17 @@
       }"
       @mouseover="enlargeImage"
       @mouseout="shrinkImage"
-      :src="$options.imageSource"
+      :src="item.image"
     />
-    <p>Valor do produto R$ {{ item.price.toFixed(2) }}</p>
-
-    <p>{{ parceledValue }}</p>
-    <p>Quantidade: {{ quantity }}</p>
-    <h3>{{ totalItemValue }}</h3>
+    <v-card-title class="price">R$ {{ item.price.toFixed(2) }}</v-card-title>
+    <v-card-subtitle>Quantidade: {{ quantity }}</v-card-subtitle>
+    <v-card-title>{{ totalItemValue }}</v-card-title>
     <quantity-button
       @increment="incrementItem()"
       @decrement="decrementItem()"
-    ></quantity-button>
-    <p>{{ item.description }}</p>
+    ></quantity-button
+    ><br />
+    <v-text>{{ item.description }}</v-text>
     <the-select :locations="parcelNumbersData"></the-select>
     <the-button :disabled="quantity <= 0" @click="onBuy(item, quantity)"
       >Adicionar ao carrinho</the-button
@@ -61,19 +64,17 @@ export default {
   computed: {
     parcelNumbersData() {
       const totalValue = this.quantity * this.item.price;
-
+      const interestRate = 0.05;
       return this.parcelNumbers.map((parcel) => {
         if (parcel < 4) {
           return `${parcel}x de R$ ${(totalValue / parcel).toFixed(
             2
           )} sem juros`;
-        } else {
-          const interestRate = 0.05;
-          return `${parcel}x de R$ ${(
-            (totalValue / parcel) *
-            (1 + interestRate)
-          ).toFixed(2)}`;
         }
+        return `${parcel}x de R$ ${(
+          (totalValue / parcel) *
+          (1 + interestRate)
+        ).toFixed(2)}`;
       });
     },
 
@@ -110,9 +111,6 @@ export default {
     shrinkImage() {
       this.imageEnlarged = false;
     },
-  },
-  created() {
-    this.$options.imageSource = this.item.image;
   },
 };
 </script>

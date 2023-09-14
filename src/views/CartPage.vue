@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h1>Cart</h1>
+    <h1>Carrinho</h1>
     <div v-for="(item, index) in productsStore.purchasedItems" :key="item.id">
       <img :src="item.image" alt="" />
-      <p>{{ item.title }}</p>
+      <v-card-title>{{ item.title }}</v-card-title>
       <p>Valor: R$ {{ item.price.toFixed(2) }}</p>
       <p>Quantidade: {{ item.quantity }}</p>
       <quantity-button
@@ -42,18 +42,18 @@ export default {
   },
   computed: {
     parcelNumbersData() {
+      const totalValue = this.quantity * this.price;
+      const interestRate = 0.05;
       return this.parcelNumbers.map((parcel) => {
         if (parcel < 4) {
-          return `${parcel}x de R$ ${(this.total / parcel).toFixed(
+          return `${parcel}x de R$ ${(totalValue / parcel).toFixed(
             2
           )} sem juros`;
-        } else {
-          const interestRate = 0.05;
-          return `${parcel}x de R$ ${(
-            (this.total / parcel) *
-            (1 + interestRate)
-          ).toFixed(2)}`;
         }
+        return `${parcel}x de R$ ${(
+          (totalValue / parcel) *
+          (1 + interestRate)
+        ).toFixed(2)}`;
       });
     },
   },
@@ -87,8 +87,7 @@ export default {
       if (item.quantity > 0) {
         item.quantity--;
         this.totalItems();
-      }
-      if (item.quantity < 1) {
+      } else if (item.quantity < 1) {
         this.deleteItem(item);
         this.conditionToAppear = false;
       }
