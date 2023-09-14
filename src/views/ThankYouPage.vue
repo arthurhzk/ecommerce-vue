@@ -22,8 +22,8 @@
   </div>
 </template>
 
-<script>
-import { useProductsStore } from "@/store/productsStore.js";
+<script lang="ts">
+import { useProductsStore } from "@/store/productsStore";
 
 export default {
   data() {
@@ -39,7 +39,7 @@ export default {
     formattedTotal() {
       let total = 0;
       for (const item of this.productsStore.addedCartItems) {
-        total += item.price * item.quantity;
+        total += item.price * (item.quantity || 0);
       }
       return total.toFixed(2);
     },

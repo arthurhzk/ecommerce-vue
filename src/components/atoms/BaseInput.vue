@@ -10,9 +10,9 @@
   </div>
 </template>
 
-<script>
-emits: ["input"];
+<script lang="ts">
 export default {
+  emits: ["input"],
   props: {
     label: {
       type: String,
@@ -28,8 +28,11 @@ export default {
     },
   },
   methods: {
-    updateValue(event) {
-      this.$emit("input", event.target.value);
+    updateValue(event: Event) {
+      if (event.target) {
+        const target = event.target as HTMLInputElement;
+        this.$emit("input", target.value);
+      }
     },
   },
 };

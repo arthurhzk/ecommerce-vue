@@ -1,4 +1,6 @@
-const items = [
+import { Product } from "@/domain/Product";
+
+const items: Product[] = [
   {
     id: 1,
     title: "Macbook Pro",

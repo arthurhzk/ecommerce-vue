@@ -16,7 +16,7 @@
         <p>Quantidade: {{ item.quantity }}</p>
         <quantity-button
           @increment="incrementItem(item)"
-          @decrement="decrementItem(item)"
+          @decrement="decrementItem(item, index)"
         ></quantity-button>
       </v-col>
       <v-col cols="4">
@@ -35,12 +35,13 @@
           label="Parcelas"
           v-if="conditionToAppear"
           :locations="parcelNumbersData"
+          v-model="selectedParcel"
         ></the-select>
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="12">
-        <the-button @click="checkoutComplete" :disabled="total === 0">
+        <the-button @click="checkoutComplete" :disabled="isButtonDisabled">
           Finalizar compra
         </the-button>
       </v-col>
@@ -48,12 +49,13 @@
   </v-container>
 </template>
 
-<script>
-import { useProductsStore } from "@/store/productsStore.js";
+<script lang="ts">
+import { useProductsStore } from "@/store/productsStore";
 import TheButton from "@/components/atoms/TheButton.vue";
 import QuantityButton from "@/components/atoms/QuantityButton.vue";
 import TheSelect from "@/components/atoms/TheSelect.vue";
-import parcelNumbers from "@/data/parcelNumbers.js";
+import parcelNumbers from "@/data/parcelNumbers";
+import { Product } from "@/domain/Product";
 
 export default {
   data() {
@@ -62,6 +64,7 @@ export default {
       cartEmptyMessage: "O seu carrinho está vazio!",
       parcelNumbers: parcelNumbers,
       conditionToAppear: false,
+      selectedParcel: null,
     };
   },
   computed: {
@@ -80,6 +83,9 @@ export default {
         ).toFixed(2)}`;
       });
     },
+    isButtonDisabled() {
+      return this.total === 0 || this.selectedParcel === null;
+    },
   },
   setup() {
     const productsStore = useProductsStore();
@@ -92,7 +98,7 @@ export default {
     }
   },
   methods: {
-    deleteItem(index) {
+    deleteItem(index: number) {
       this.productsStore.purchasedItems.splice(index, 1);
       this.totalItems();
       if (this.productsStore.purchasedItems.length === 0) {
@@ -101,7 +107,7 @@ export default {
     },
     totalItems() {
       this.total = this.productsStore.purchasedItems.reduce(
-        (accumulator, item) => accumulator + item.price * item.quantity,
+        (accumulator, item) => accumulator + item.price * (item.quantity || 0),
         0
       );
     },
@@ -109,17 +115,18 @@ export default {
       this.$router.push("/thank-you");
       this.productsStore.clearCart();
     },
-    incrementItem(item) {
-      item.quantity++;
+    incrementItem(item: Product) {
+      const quantity = item.quantity || 0;
+      item.quantity = quantity + 1;
       this.totalItems();
     },
-    decrementItem(item) {
-      if (item.quantity > 0) {
+    decrementItem(item: Product, index: number) {
+      if (item.quantity && item.quantity > 0) {
         item.quantity--;
         this.totalItems();
       }
       if (item.quantity === 0) {
-        this.deleteItem(item);
+        this.deleteItem(index);
         this.conditionToAppear = false;
       }
     },

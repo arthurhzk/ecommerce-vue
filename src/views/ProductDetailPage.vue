@@ -27,24 +27,24 @@
     <the-button :disabled="quantity <= 0" @click="onBuy(item, quantity)"
       >Adicionar ao carrinho</the-button
     >
-    <v-snackbar v-model="item.addedProduct"
+    <v-snackbar v-model="addedProduct"
       >Produto adicionado ao carrinho
     </v-snackbar>
   </div>
 </template>
 
-<script>
-import items from "@/data/items.js";
+<script lang="ts">
+import items from "@/data/items";
 import QuantityButton from "@/components/atoms/QuantityButton.vue";
-import { useProductsStore } from "@/store/productsStore.js";
+import { useProductsStore } from "@/store/productsStore";
 import TheButton from "@/components/atoms/TheButton.vue";
 import TheSelect from "@/components/atoms/TheSelect.vue";
-import parcelNumbers from "@/data/parcelNumbers.js";
+import parcelNumbers from "@/data/parcelNumbers";
+import { Product } from "@/domain/Product";
 export default {
   name: "ProductDetailPage",
   data() {
     return {
-      item: items.find((item) => item.id == this.$route.params.id),
       quantity: 1,
       addedProduct: false,
       noProduct: true,
@@ -63,7 +63,7 @@ export default {
   },
   computed: {
     parcelNumbersData() {
-      const totalValue = this.quantity * this.item.price;
+      const totalValue = this.quantity * this.itemPrice;
       const interestRate = 0.05;
       return this.parcelNumbers.map((parcel) => {
         if (parcel < 4) {
@@ -77,9 +77,15 @@ export default {
         ).toFixed(2)}`;
       });
     },
-
+    item() {
+      const routeId = this.$route.params.id as string;
+      return items.find((item) => item.id == Number(routeId));
+    },
+    itemPrice() {
+      return this.item?.price || 0;
+    },
     totalItemValue() {
-      const totalValue = this.quantity * this.item.price;
+      const totalValue = this.quantity * this.itemPrice;
       const totalValueWithDiscount = totalValue - totalValue * 0.1;
 
       return `Valor total da compra à vista com 10% de desconto no pix: R$ ${totalValueWithDiscount.toFixed(
@@ -90,18 +96,16 @@ export default {
   methods: {
     incrementItem() {
       this.quantity++;
-      this.totalItems();
       this.noProduct = true;
     },
     decrementItem() {
       if (this.quantity > 1) {
         this.quantity--;
-        this.totalItems();
       }
     },
-    onBuy(item, quantity) {
+    onBuy(item: Product, quantity: number) {
       this.productsStore.addToCart(item, quantity);
-      item.addedProduct = true;
+      this.addedProduct = true;
       this.quantity = 0;
     },
     enlargeImage() {

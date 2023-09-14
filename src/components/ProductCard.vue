@@ -24,7 +24,7 @@
   </v-card>
 </template>
 
-<script>
+<script lang="ts">
 import TheButton from "@/components/atoms/TheButton.vue";
 import QuantityButton from "@/components/atoms/QuantityButton.vue";
 
@@ -48,7 +48,7 @@ export default {
   methods: {
     onButtonClick() {
       this.$emit("buy", this.quantityValue);
-      this.quantityValue = null;
+      this.quantityValue = 0;
     },
     incrementItem() {
       this.quantityValue++;

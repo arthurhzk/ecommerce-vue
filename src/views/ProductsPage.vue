@@ -10,18 +10,18 @@
     :data="item"
     @buy="(quantity) => onBuy(item, quantity)"
   >
-    <v-snackbar v-model="item.addedProduct"
+    <v-snackbar v-model="addedProduct"
       >Produto adicionado ao carrinho
     </v-snackbar>
   </product-card>
 </template>
 
-<script>
-import items from "@/data/items.js";
+<script lang="ts">
+import items from "@/data/items";
 import ProductCard from "@/components/ProductCard.vue";
-import { useProductsStore } from "@/store/productsStore.js";
+import { useProductsStore } from "@/store/productsStore";
 import BaseInput from "@/components/atoms/BaseInput.vue";
-
+import { Product } from "@/domain/Product";
 export default {
   data() {
     return {
@@ -37,9 +37,9 @@ export default {
   },
   components: { ProductCard, BaseInput },
   methods: {
-    onBuy(item, quantity) {
+    onBuy(item: Product, quantity: number) {
       this.productsStore.addToCart(item, quantity);
-      item.addedProduct = true;
+      this.addedProduct = true;
     },
   },
   computed: {

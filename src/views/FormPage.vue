@@ -10,7 +10,7 @@
       v-model="field.value"
     ></base-input>
     <the-select
-      required="required"
+      required
       v-model="selectedLocation"
       :locations="fieldStates"
     ></the-select>
@@ -21,7 +21,7 @@
   </form>
 </template>
 
-<script>
+<script lang="ts">
 import BaseInput from "@/components/atoms/BaseInput.vue";
 import TheButton from "@/components/atoms/TheButton.vue";
 import TheSelect from "@/components/atoms/TheSelect.vue";
@@ -57,8 +57,10 @@ export default {
     },
   },
   methods: {
-    onInput(index, event) {
-      this.formFields[index].value = event.target.value;
+    onInput(index: number, event: string) {
+      debugger;
+      let field = this.formFields[index];
+      field.value = event;
     },
     submitForm() {
       const passwordField1 = this.formFields[3].value;

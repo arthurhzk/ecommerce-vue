@@ -1,4 +1,6 @@
-const formFields = [
+import { RegistrationField } from "@/domain/RegistrationField";
+
+const formFields: RegistrationField[] = [
   { label: "Name", type: "text", value: "" },
   { label: "Last Name", type: "text", value: "" },
   { label: "Email", type: "email", value: "" },

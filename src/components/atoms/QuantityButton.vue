@@ -3,7 +3,7 @@
   <v-btn @click="decrementItem">-</v-btn>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   emits: ["increment", "decrement"],
   methods: {

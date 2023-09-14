@@ -6,9 +6,9 @@
     :items="locations"
   ></v-select>
 </template>
-<script>
-emits: ["input"];
+<script lang="ts">
 export default {
+  emits: ["input"],
   props: {
     locations: {
       type: Array,
@@ -16,13 +16,13 @@ export default {
     required: {
       type: Boolean,
     },
-    parcels: {
-      type: Array,
-    },
   },
   methods: {
-    updateValue(event) {
-      this.$emit(event.target.value);
+    updateValue(event: Event) {
+      if (event.target) {
+        const target = event.target as HTMLInputElement;
+        this.$emit("input", target.value);
+      }
     },
   },
 };

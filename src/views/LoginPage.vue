@@ -10,7 +10,7 @@
   </form>
 </template>
 
-<script>
+<script lang="ts">
 import TheButton from "@/components/atoms/TheButton.vue";
 import BaseInput from "@/components/atoms/BaseInput.vue";
 export default {
@@ -18,6 +18,11 @@ export default {
   components: {
     TheButton,
     BaseInput,
+  },
+  methods: {
+    submitForm() {
+      console.log("yea");
+    },
   },
 };
 </script>

@@ -47,8 +47,8 @@
 }
 </style>
 
-<script>
-import items from "@/data/items.js";
+<script lang="ts">
+import items from "@/data/items";
 import { useProductsStore } from "@/store/productsStore.js";
 export default {
   name: "TheNav",
