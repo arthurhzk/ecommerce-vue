@@ -64,11 +64,11 @@ export default {
       cartEmptyMessage: "O seu carrinho está vazio!",
       parcelNumbers: parcelNumbers,
       conditionToAppear: false,
-      selectedParcel: null,
+      selectedParcel: null as number | null,
     };
   },
   computed: {
-    parcelNumbersData() {
+    parcelNumbersData(): string[] {
       const totalValue = this.total;
       const interestRate = 0.05;
       return this.parcelNumbers.map((parcel) => {
@@ -83,7 +83,7 @@ export default {
         ).toFixed(2)}`;
       });
     },
-    isButtonDisabled() {
+    isButtonDisabled(): boolean {
       return this.total === 0 || this.selectedParcel === null;
     },
   },
@@ -98,18 +98,20 @@ export default {
     }
   },
   methods: {
-    deleteItem(index: number) {
+    deleteItem(index: number): void {
       this.productsStore.purchasedItems.splice(index, 1);
       this.totalItems();
       if (this.productsStore.purchasedItems.length === 0) {
         this.conditionToAppear = false;
       }
     },
-    totalItems() {
+    totalItems(): number {
       this.total = this.productsStore.purchasedItems.reduce(
-        (accumulator, item) => accumulator + item.price * (item.quantity || 0),
+        (accumulator: number, item: Product) =>
+          accumulator + item.price * (item.quantity || 0),
         0
       );
+      return this.total;
     },
     checkoutComplete() {
       this.$router.push("/thank-you");

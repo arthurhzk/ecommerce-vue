@@ -16,7 +16,8 @@
             </v-col>
           </v-row>
         </div>
-        <p>Valor total da compra R$ {{ formattedTotal }}</p>
+
+        <p>Valor Total: R$ {{ formattedTotal }}</p>
       </v-card-text>
     </v-card>
   </div>
@@ -26,11 +27,6 @@
 import { useProductsStore } from "@/store/productsStore";
 
 export default {
-  data() {
-    return {
-      formattedTotal: 0,
-    };
-  },
   setup() {
     const productsStore = useProductsStore();
     return { productsStore };

@@ -5,6 +5,7 @@ import ThankYouPage from "@/views/ThankYouPage.vue";
 import FormPage from "@/views/FormPage.vue";
 import ProductDetailPage from "@/views/ProductDetailPage.vue";
 import LoginPage from "@/views/LoginPage.vue";
+
 const routes = [
   {
     path: "/",
@@ -26,8 +27,12 @@ const routes = [
     path: "/sign-in",
     component: FormPage,
   },
-  { path: "/login", component: LoginPage },
+  {
+    path: "/login",
+    component: LoginPage,
+  },
 ];
+
 const router = createRouter({
   history: createWebHistory(),
   routes,

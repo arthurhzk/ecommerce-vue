@@ -58,7 +58,6 @@ export default {
   },
   methods: {
     onInput(index: number, event: string) {
-      debugger;
       let field = this.formFields[index];
       field.value = event;
     },
