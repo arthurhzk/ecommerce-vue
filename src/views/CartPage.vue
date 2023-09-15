@@ -8,7 +8,7 @@
     </v-row>
     <v-row v-for="(item, index) in productsStore.purchasedItems" :key="item.id">
       <v-col cols="4">
-        <img :src="item.image" alt="" />
+        <img :src="item.image" alt="" width="200" height="150" />
       </v-col>
       <v-col cols="4">
         <v-card-title>{{ item.title }}</v-card-title>

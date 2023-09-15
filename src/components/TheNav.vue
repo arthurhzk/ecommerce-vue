@@ -20,7 +20,10 @@
       <v-divider vertical></v-divider>
 
       <router-link to="cart" class="no-decor">
-        <v-btn variant="text">Carrinho {{ totalCartItems }}</v-btn>
+        <v-btn variant="text"
+          >Carrinho
+          <span class="totalCart-bg"> {{ totalCartItems }}</span></v-btn
+        >
       </router-link>
 
       <v-divider vertical></v-divider>
@@ -68,3 +71,11 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.totalCart-bg {
+  background-color: #ff5722;
+  border-radius: 12px;
+  padding: 0.3rem;
+}
+</style>

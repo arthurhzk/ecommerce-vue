@@ -2,7 +2,7 @@
   <v-card class="my-4" max-width="374">
     <v-card-title class="text-h6">{{ data.title }}</v-card-title>
     <router-link :to="`/${data.id}`">
-      <v-img cover height="250" :src="data.image"></v-img>
+      <v-img cover height="220" width="300" :src="data.image"></v-img>
     </router-link>
     <div class="my-2">
       <p class="text-h5 font-weight-bold">R$ {{ data.price.toFixed(2) }}</p>
