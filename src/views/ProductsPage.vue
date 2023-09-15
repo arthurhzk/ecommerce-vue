@@ -8,6 +8,7 @@
   <the-button @click="searchByHighestPrice">Maior preço</the-button>
   <the-button @click="searchByLowestPrice">Menor preço</the-button>
   <the-button @click="searchByRating">Rating</the-button>
+  <the-button @click="createProduct">Adicionar produto</the-button>
   <p v-if="!searchItems.length">{{ emptySearch }}</p>
   <div class="d-flex flex-wrap justify-center">
     <product-card
@@ -25,6 +26,7 @@
 </template>
 
 <script lang="ts">
+import axios from "axios";
 import items from "@/data/items";
 import ProductCard from "@/components/ProductCard.vue";
 import { useProductsStore } from "@/store/productsStore";
@@ -84,6 +86,26 @@ export default {
         else if (a.rating < b.rating) return 1;
         return 0;
       });
+    },
+    createProduct() {
+      const newProduct = {
+        title: "Novo Produto",
+        description: "Descrição do Novo Produto",
+        price: 19.99,
+        rating: 4.5,
+        image: "caminho/para/a/imagem.jpg",
+      };
+
+      const apiURL = "http://localhost:5000/api/create-product";
+
+      axios
+        .post(apiURL, newProduct)
+        .then((response) => {
+          console.log("Produto criado com sucesso!", response.data);
+        })
+        .catch((error) => {
+          console.error("Erro ao criar o produto:", error);
+        });
     },
   },
 

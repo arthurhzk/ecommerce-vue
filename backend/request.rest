@@ -1,0 +1,32 @@
+POST http://localhost:3000/api/items
+Content-Type: application/json
+
+{
+  "title": "Exemplo de Item",
+  "price": 19.99,
+  "image": "caminho/para/imagem.jpg",
+  "description": "Descrição do item de exemplo",
+  "rating": 4.5,
+  "quantity": 10
+}
+
+###
+
+GET http://localhost:3000/api/items
+
+###
+GET http://localhost:3000/api/items/6504b0316a46b3a0dcb4e6bd
+###
+DELETE http://localhost:3000/api/items/6504b90ea6a52aa37f55fc36
+###
+PUT http://localhost:3000/api/items/6504c3226cdab89efaa03090
+Content-Type: application/json
+
+{
+  "title": "TESTE ATUALIZAÇÃO",
+  "price": 19.99,
+  "image": "caminho/para/imagem.jpg",
+  "description": "Descrição do item de exemplo",
+  "rating": 4.5,
+  "quantity": 10
+}
