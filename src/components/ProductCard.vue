@@ -15,10 +15,11 @@
         @increment="incrementItem"
         @decrement="decrementItem"
       ></quantity-button>
-      <p class="mx-2">{{ quantityValue }}</p>
       <the-button :disabled="!quantityValue" @click="onButtonClick"
         >Comprar</the-button
       >
+
+      <p class="mx-2">Quantidade: {{ quantityValue }}</p>
     </div>
     <slot></slot>
   </v-card>

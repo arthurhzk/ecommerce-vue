@@ -24,10 +24,7 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12">
-        <p v-if="total === 0">{{ cartEmptyMessage }}</p>
-        <p v-else>Valor total a pagar R$ {{ total.toFixed(2) }}</p>
-      </v-col>
+      <v-col cols="12"> </v-col>
     </v-row>
     <v-row>
       <v-col cols="12">
@@ -37,6 +34,27 @@
           :locations="parcelNumbersData"
           v-model="selectedParcel"
         ></the-select>
+        <div>
+          <radio-input
+            v-if="conditionToAppear"
+            label="Pagamento no cartão"
+            value="card"
+            color="blue"
+            :selectedValue="selectedPaymentMethod"
+          ></radio-input>
+          <radio-input
+            v-if="conditionToAppear"
+            label="À vista no pix"
+            value="pix"
+            color="blue"
+            :selectedValue="selectedPaymentMethod"
+          ></radio-input>
+        </div>
+
+        <p v-if="total === 0">
+          {{ cartEmptyMessage }}
+        </p>
+        <p v-else>Valor total a pagar R$ {{ selectedParcel }}</p>
       </v-col>
     </v-row>
     <v-row>
@@ -56,7 +74,7 @@ import QuantityButton from "@/components/atoms/QuantityButton.vue";
 import TheSelect from "@/components/atoms/TheSelect.vue";
 import parcelNumbers from "@/data/parcelNumbers";
 import { Product } from "@/domain/Product";
-
+import RadioInput from "@/components/atoms/RadioInput.vue";
 export default {
   data() {
     return {
@@ -65,6 +83,8 @@ export default {
       parcelNumbers: parcelNumbers,
       conditionToAppear: false,
       selectedParcel: null as number | null,
+      selectedPaymentMethod: "pix",
+      discountPercentage: 10,
     };
   },
   computed: {
@@ -83,6 +103,7 @@ export default {
         ).toFixed(2)}`;
       });
     },
+
     isButtonDisabled(): boolean {
       return this.total === 0 || this.selectedParcel === null;
     },
@@ -138,6 +159,7 @@ export default {
     TheButton,
     QuantityButton,
     TheSelect,
+    RadioInput,
   },
 };
 </script>

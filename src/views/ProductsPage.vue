@@ -4,11 +4,12 @@
     label="Pequise aqui o seu produto"
   ></v-text-field>
 
-  <the-button @click="searchByAlphabeticalOrder">Ordenar produtos</the-button>
-  <the-button @click="searchByHighestPrice">Maior preço</the-button>
-  <the-button @click="searchByLowestPrice">Menor preço</the-button>
-  <the-button @click="searchByRating">Rating</the-button>
-  <the-button @click="createProduct">Adicionar produto</the-button>
+  <div class="button-container">
+    <the-button @click="searchByAlphabeticalOrder">Ordenar produtos</the-button>
+    <the-button @click="searchByHighestPrice">Maior preço</the-button>
+    <the-button @click="searchByLowestPrice">Menor preço</the-button>
+    <the-button @click="searchByRating">Rating</the-button>
+  </div>
   <p v-if="!searchItems.length">{{ emptySearch }}</p>
   <div class="d-flex flex-wrap justify-center">
     <product-card
@@ -47,6 +48,12 @@ export default {
         "Menor preço",
         "Melhor avaliado",
       ],
+      item: {
+        title: "",
+        description: "",
+        price: 0,
+        rating: 0,
+      },
     };
   },
   setup() {
@@ -66,6 +73,7 @@ export default {
         return 0;
       });
     },
+
     searchByHighestPrice() {
       this.items.sort((a, b) => {
         if (a.price > b.price) return -1;
@@ -87,28 +95,7 @@ export default {
         return 0;
       });
     },
-    createProduct() {
-      const newProduct = {
-        title: "Novo Produto",
-        description: "Descrição do Novo Produto",
-        price: 19.99,
-        rating: 4.5,
-        image: "caminho/para/a/imagem.jpg",
-      };
-
-      const apiURL = "http://localhost:5000/api/create-product";
-
-      axios
-        .post(apiURL, newProduct)
-        .then((response) => {
-          console.log("Produto criado com sucesso!", response.data);
-        })
-        .catch((error) => {
-          console.error("Erro ao criar o produto:", error);
-        });
-    },
   },
-
   computed: {
     searchItems() {
       if (!this.inputValue) return this.items;
@@ -119,3 +106,11 @@ export default {
   },
 };
 </script>
+
+<style>
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+</style>
