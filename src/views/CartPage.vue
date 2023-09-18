@@ -37,13 +37,7 @@
         <div>
           <radio-input
             v-if="conditionToAppear"
-            label="Pagamento no cartão"
-            value="card"
-            color="blue"
-            :selectedValue="selectedPaymentMethod"
-          ></radio-input>
-          <radio-input
-            v-if="conditionToAppear"
+            @click="conditionToAppearOnPix = !conditionToAppearOnPix"
             label="À vista no pix"
             value="pix"
             color="blue"
@@ -54,7 +48,17 @@
         <p v-if="total === 0">
           {{ cartEmptyMessage }}
         </p>
-        <p v-else>Valor total a pagar R$ {{ selectedParcel }}</p>
+
+        <p v-else>{{ selectedParcel }}</p>
+        <div
+          v-if="
+            selectedPaymentMethod === 'pix' && conditionToAppearOnPix === true
+          "
+        >
+          <p v-if="conditionToAppear">
+            Valor total com desconto (pix): R$ {{ discountWithPix }}
+          </p>
+        </div>
       </v-col>
     </v-row>
     <v-row>
@@ -85,6 +89,7 @@ export default {
       selectedParcel: null as number | null,
       selectedPaymentMethod: "pix",
       discountPercentage: 10,
+      conditionToAppearOnPix: false,
     };
   },
   computed: {
@@ -105,7 +110,16 @@ export default {
     },
 
     isButtonDisabled(): boolean {
-      return this.total === 0 || this.selectedParcel === null;
+      return (
+        this.total === 0 ||
+        this.selectedParcel === null ||
+        this.selectedPaymentMethod === null
+      );
+    },
+    discountWithPix(): void | number {
+      if (this.selectedPaymentMethod === "pix" && this.total > 0) {
+        return this.total - (this.total * this.discountPercentage) / 100;
+      }
     },
   },
   setup() {

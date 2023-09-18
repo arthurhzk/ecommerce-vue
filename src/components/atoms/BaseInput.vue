@@ -2,6 +2,7 @@
   <div>
     <label>{{ label }}</label>
     <v-text-field
+      class="small-input"
       :required="required"
       :type="type"
       :placeholder="label"
@@ -37,3 +38,5 @@ export default {
   },
 };
 </script>
+
+<style></style>

@@ -35,6 +35,7 @@ import BaseInput from "@/components/atoms/BaseInput.vue";
 import { Product } from "@/domain/Product";
 import TheSelect from "@/components/atoms/TheSelect.vue";
 import TheButton from "@/components/atoms/TheButton.vue";
+import { getActivePinia } from "pinia";
 export default {
   data() {
     return {
@@ -95,6 +96,12 @@ export default {
         return 0;
       });
     },
+    getApiData() {
+      const apiUrl = "http://localhost:3000/api/items";
+      axios.get(apiUrl).then((response: any) => {
+        console.log("Dados da API", response.data);
+      });
+    },
   },
   computed: {
     searchItems() {
@@ -104,6 +111,9 @@ export default {
       });
     },
   },
+  mounted() {
+    this.getApiData();
+  },
 };
 </script>
 
@@ -111,6 +121,6 @@ export default {
 .button-container {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  gap: 14px;
 }
 </style>
