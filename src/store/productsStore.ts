@@ -21,7 +21,7 @@ export const useProductsStore = defineStore("products", {
   actions: {
     addToCart(item: Product, quantity: number) {
       const purchasedItem = this.purchasedItems.find((purchasedItem) => {
-        return purchasedItem.id === item.id;
+        return purchasedItem._id === item._id;
       });
       if (purchasedItem) {
         item.quantity = quantity + (purchasedItem.quantity || 0);

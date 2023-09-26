@@ -55,11 +55,7 @@ import items from "@/data/items";
 import { useProductsStore } from "@/store/productsStore.js";
 export default {
   name: "TheNav",
-  data() {
-    return {
-      items: items,
-    };
-  },
+
   setup() {
     const productsStore = useProductsStore();
     return { productsStore };

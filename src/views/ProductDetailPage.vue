@@ -34,7 +34,8 @@
 </template>
 
 <script lang="ts">
-import items from "@/data/items";
+import axios from "axios";
+
 import QuantityButton from "@/components/atoms/QuantityButton.vue";
 import { useProductsStore } from "@/store/productsStore";
 import TheButton from "@/components/atoms/TheButton.vue";
@@ -50,6 +51,7 @@ export default {
       noProduct: true,
       parcelNumbers: parcelNumbers,
       imageEnlarged: false,
+      item: undefined as Product | undefined,
     };
   },
   components: {
@@ -76,10 +78,6 @@ export default {
           (1 + interestRate)
         ).toFixed(2)}`;
       });
-    },
-    item() {
-      const routeId = this.$route.params.id as string;
-      return items.find((item) => item.id == Number(routeId));
     },
     itemPrice() {
       return this.item?.price || 0;
@@ -115,6 +113,15 @@ export default {
     shrinkImage() {
       this.imageEnlarged = false;
     },
+    getApiData() {
+      const apiUrl = `http://localhost:3000/api/items/${this.$route.params.id}`;
+      axios.get(apiUrl).then((response: any) => {
+        this.item = response.data;
+      });
+    },
+  },
+  mounted() {
+    this.getApiData();
   },
 };
 </script>

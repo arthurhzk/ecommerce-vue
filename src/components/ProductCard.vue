@@ -1,7 +1,7 @@
 <template>
   <v-card class="my-4" max-width="374">
     <v-card-title class="text-h6">{{ data.title }}</v-card-title>
-    <router-link :to="`/${data.id}`">
+    <router-link :to="`/${data._id}`">
       <v-img cover height="220" width="300" :src="data.image"></v-img>
     </router-link>
     <div class="my-2">

@@ -14,7 +14,7 @@
   <div class="d-flex flex-wrap justify-center">
     <product-card
       v-for="item in searchItems"
-      :key="item.id"
+      :key="item._id"
       :data="item"
       @buy="(quantity) => onBuy(item, quantity)"
       class="mx-2 mb-3"
@@ -37,7 +37,7 @@ import TheButton from "@/components/atoms/TheButton.vue";
 export default {
   data() {
     return {
-      items: [],
+      items: [] as Product[],
       inputValue: "",
       emptySearch: "Não foi possível localizar o seu produto",
       addedProduct: false,
