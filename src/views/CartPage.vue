@@ -28,23 +28,24 @@
     </v-row>
     <v-row>
       <v-col cols="12">
-        <the-select
-          label="Parcelas"
-          v-if="conditionToAppear"
-          :locations="parcelNumbersData"
-          v-model="selectedParcel"
-        ></the-select>
-        <div>
-          <radio-input
+        <transition name="fade">
+          <the-select
+            label="Parcelas"
             v-if="conditionToAppear"
+            :locations="parcelNumbersData"
+            v-model="selectedParcel"
+          ></the-select>
+        </transition>
+        <transition name="fade">
+          <radio-input
+            v-show="conditionToAppear"
             @click="conditionToAppearOnPix = !conditionToAppearOnPix"
             label="À vista no pix"
             value="pix"
             color="blue"
             :selectedValue="selectedPaymentMethod"
           ></radio-input>
-        </div>
-
+        </transition>
         <p v-if="total === 0">
           {{ cartEmptyMessage }}
         </p>
@@ -54,11 +55,12 @@
           v-if="
             selectedPaymentMethod === 'pix' && conditionToAppearOnPix === true
           "
-        >
-          <p v-if="conditionToAppear">
+        ></div>
+        <transition name="fade">
+          <p v-show="conditionToAppearOnPix && total > 0">
             Valor total com desconto (pix): R$ {{ discountWithPix }}
           </p>
-        </div>
+        </transition>
       </v-col>
     </v-row>
     <v-row>
@@ -177,3 +179,16 @@ export default {
   },
 };
 </script>
+
+<style>
+.fade-enter-from {
+  opacity: 0;
+}
+.fade-enter-active {
+  transition: all 0.25s linear;
+}
+.fade-leave-to {
+  transition: all 0.25s linear;
+  opacity: 0;
+}
+</style>

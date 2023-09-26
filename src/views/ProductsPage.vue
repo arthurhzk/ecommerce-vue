@@ -28,18 +28,16 @@
 
 <script lang="ts">
 import axios from "axios";
-import items from "@/data/items";
 import ProductCard from "@/components/ProductCard.vue";
 import { useProductsStore } from "@/store/productsStore";
 import BaseInput from "@/components/atoms/BaseInput.vue";
 import { Product } from "@/domain/Product";
 import TheSelect from "@/components/atoms/TheSelect.vue";
 import TheButton from "@/components/atoms/TheButton.vue";
-import { getActivePinia } from "pinia";
 export default {
   data() {
     return {
-      items: items,
+      items: [],
       inputValue: "",
       emptySearch: "Não foi possível localizar o seu produto",
       addedProduct: false,
@@ -99,7 +97,7 @@ export default {
     getApiData() {
       const apiUrl = "http://localhost:3000/api/items";
       axios.get(apiUrl).then((response: any) => {
-        console.log("Dados da API", response.data);
+        this.items = response.data;
       });
     },
   },
